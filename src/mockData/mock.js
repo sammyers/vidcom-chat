@@ -10,6 +10,7 @@ const createMockData = dispatch => {
     dispatch(addContact(id, name, photo));
   }
   for (const [{ id }, messages] of _.zip(contacts, conversations)) {
+    console.log('User id', id);
     dispatch(loadMessages(id, createMessages(messages)));
   }
 };

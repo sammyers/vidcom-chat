@@ -15,7 +15,7 @@ function messageReducer(state = {}, { type, payload }) {
         ...state,
         [payload.chatId]: [
           ...state[payload.chatId],
-          _.pick(payload, ['sender', 'text', 'timestamp']),
+          _.pick(payload, ['sent', 'text', 'timestamp']),
         ],
       };
 

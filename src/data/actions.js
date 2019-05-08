@@ -1,3 +1,7 @@
+import moment from 'moment';
+
+import { getSelectedConversation, getMessageValue } from './selectors';
+
 export const types = {
   ADD_CONTACT: 'ADD_CONTACT',
   LOAD_MESSAGES: 'LOAD_MESSAGES',
@@ -30,3 +34,14 @@ export const editMessageField = (value) => ({
   type: types.EDIT_MESSAGE_FIELD,
   payload: { value },
 });
+
+export const sendMessage = () => (dispatch, getState) => {
+  const state = getState();
+  dispatch(addMessage(
+    getSelectedConversation(state),
+    true,
+    getMessageValue(state),
+    moment(),
+  ));
+  dispatch(editMessageField(''));
+};

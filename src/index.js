@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import App from './App';
 import rootReducer from './data/rootReducer';
@@ -11,7 +12,7 @@ import createMockData from './mockData/mock';
 
 import './index.css';
 
-const store = createStore(rootReducer, devToolsEnhancer());
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 createMockData(store.dispatch);
 
 ReactDOM.render(

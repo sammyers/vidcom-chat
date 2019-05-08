@@ -1,22 +1,25 @@
 import React from 'react';
-import { Grid, Header, Container, Divider } from 'semantic-ui-react';
+import { Grid, Container } from 'semantic-ui-react';
 
 import ContactList from './ui/ContactList';
+import ChatConversation from './ui/ChatConversation';
 
 import './App.css';
 
 const App = () => (
   <Container fluid style={{ height: 'calc(100vh + 1rem)' }}>
     <Grid divided style={{ height: '100%' }}>
-      <Grid.Column width={4} style={{ paddingRight: 0 }}>
-        <Header size='large' textAlign='center' style={{ marginTop: '0.5rem' }}>
-          Contacts
-        </Header>
-        <Divider style={{ marginBottom: 0 }} />
+      <Grid.Column
+        width={4}
+        style={{ paddingRight: 0, paddingBottom: 0, height: '100%' }}
+      >
         <ContactList />
       </Grid.Column>
-      <Grid.Column width={12}>
-        
+      <Grid.Column
+        width={12}
+        style={{ paddingLeft: 0, paddingBottom: 0, height: '100%' }}
+      >
+        <ChatConversation />
       </Grid.Column>
     </Grid>
   </Container>

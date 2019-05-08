@@ -37,3 +37,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.contact {
+  margin-top: -1px !important;
+  padding: 1rem !important;
+  cursor: pointer;
+}

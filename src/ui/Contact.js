@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Feed } from 'semantic-ui-react';
 
-import { getLastMessage } from '../data/selectors';
+import { getLastMessage, isContactSelected } from '../data/selectors';
+import { selectConversation } from '../data/actions';
 
-const Contact = ({ name, photo, lastMessage }) => (
-  <Feed.Event style={{ padding: '1rem' }}>
+const Contact = ({ name, photo, lastMessage, selected, handleClick }) => (
+  <Feed.Event
+    className='contact'
+    style={{ backgroundColor: selected ? 'gainsboro' : 'white' }}
+    onClick={handleClick}
+  >
     <Feed.Label image={photo} style={{ margin: 'auto' }} />
     <Feed.Content style={{ overflow: 'hidden' }}>
       <Feed.Summary style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -23,5 +28,9 @@ const Contact = ({ name, photo, lastMessage }) => (
 export default connect(
   (state, { id }) => ({
     lastMessage: getLastMessage(state, id),
+    selected: isContactSelected(state, id),
+  }),
+  (dispatch, { id }) => ({
+    handleClick: () => dispatch(selectConversation(id)),
   }),
 )(Contact);

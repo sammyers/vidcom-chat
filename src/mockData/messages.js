@@ -4,13 +4,13 @@ import moment from 'moment';
 export const createMessages = messages => {
   const latest = moment().subtract({ hours: _.random(4), minutes: _.random(59) });
   const datedMessages = [];
-  _.forEachRight(
-    messages,
-    message => datedMessages.unshift({
-      ...message,
-      timestamp: latest.subtract(_.random(59), 'minutes'),
-    }),
-  );
+  const reversed = _.reverse(_.slice(messages));
+  for (let message of reversed) {
+    console.log('latest', latest.format());
+    const timestamp = moment(latest.subtract(_.random(59), 'minutes'));
+    console.log('new', timestamp.format());
+    datedMessages.unshift({ ...message, timestamp });
+  }
   return datedMessages;
 };
 
